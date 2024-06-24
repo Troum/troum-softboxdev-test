@@ -1,0 +1,76 @@
+$grid-columns: 12;
+$gutter-width: 30px;
+$border-radius: 6px;
+$outline-color: #51369e;
+$outline-width: 2px;
+$outline-style: solid;
+$container-max-widths: (
+        md: 1024px,
+        lg: 1280px,
+        xl: 1440px,
+        xxl: 1600px,
+        fhd: 1920px,
+);
+$display-properties: (
+        none,
+        block,
+        inline,
+        inline-block,
+        flex,
+        inline-flex,
+        grid,
+        inline-grid,
+        table,
+        table-row,
+        table-cell
+);
+$justify-content-options: (
+        start,
+        end,
+        center,
+        between,
+        around,
+        evenly
+);
+$align-items-options: (
+        start,
+        end,
+        center,
+        baseline,
+        stretch
+);
+$align-self-options: (
+        auto,
+        start,
+        end,
+        center,
+        baseline,
+        stretch
+);
+$spacing-values: (
+        0: 0,
+        1: 0.25rem,
+        2: 0.5rem,
+        3: 1rem,
+        4: 1.5rem,
+        5: 3rem
+);
+$flex-directions: (
+        row,
+        row-reverse,
+        column,
+        column-reverse
+);
+$flex-wraps: (
+        nowrap,
+        wrap,
+        wrap-reverse
+);
+$flex-gaps: (
+        0: 0,
+        1: 0.25rem,
+        2: 0.5rem,
+        3: 1rem,
+        4: 1.5rem,
+        5: 3rem
+);

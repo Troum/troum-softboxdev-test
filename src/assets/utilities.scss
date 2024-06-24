@@ -1,0 +1,262 @@
+@use "sass:math";
+@import "variables";
+@import "mixins";
+
+.outline-on-click {
+  &:focus,
+  &:active {
+    outline: $outline-width $outline-style $outline-color !important;
+  }
+}
+
+button,
+a {
+  @extend .outline-on-click;
+  text-decoration: none;
+}
+
+.container {
+  width: 100%;
+  padding-right: math.div($gutter-width, 2);
+  padding-left: $gutter-width, 2;
+  margin-right: auto;
+  margin-left: auto;
+
+  @each $breakpoint, $max-width in $container-max-widths {
+    @media (min-width: #{map-get($container-max-widths, $breakpoint)}) {
+      max-width: $max-width;
+    }
+  }
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: math.div(-$gutter-width, 2);
+  margin-left: math.div(-$gutter-width, 2);
+}
+
+.col {
+  position: relative;
+  width: 100%;
+  padding-right: math.div($gutter-width, 2);
+  padding-left: math.div($gutter-width, 2);
+
+  @for $i from 1 through $grid-columns {
+    &-#{$i} {
+      @include make-col($i);
+    }
+  }
+}
+
+@each $breakpoint, $max-width in $container-max-widths {
+  @media (min-width: $max-width) {
+    .container-#{$breakpoint} {
+      @include make-container-max-width($breakpoint);
+    }
+
+    @for $i from 1 through $grid-columns {
+      .col-#{$breakpoint}-#{$i} {
+        @include make-col($i);
+      }
+    }
+  }
+}
+
+@each $property in $display-properties {
+  .d-#{$property} {
+    display: #{$property};
+  }
+}
+
+@each $breakpoint, $width in $container-max-widths {
+  @media (min-width: $width) {
+    @each $property in $display-properties {
+      .d-#{$breakpoint}-#{$property} {
+        display: #{$property};
+      }
+    }
+  }
+}
+
+@each $option in $justify-content-options {
+  .justify-content-#{$option} {
+    justify-content: #{$option};
+  }
+
+  @each $breakpoint, $width in $container-max-widths {
+    @media (min-width: $width) {
+      .justify-content-#{$breakpoint}-#{$option} {
+        justify-content: #{$option};
+      }
+    }
+  }
+}
+
+@each $option in $align-items-options {
+  .align-items-#{$option} {
+    align-items: #{$option};
+  }
+
+  @each $breakpoint, $width in $container-max-widths {
+    @media (min-width: $width) {
+      .align-items-#{$breakpoint}-#{$option} {
+        align-items: #{$option};
+      }
+    }
+  }
+}
+
+@each $option in $align-self-options {
+  .align-self-#{$option} {
+    align-self: #{$option};
+  }
+
+  @each $breakpoint, $width in $container-max-widths {
+    @media (min-width: $width) {
+      .align-self-#{$breakpoint}-#{$option} {
+        align-self: #{$option};
+      }
+    }
+  }
+}
+
+@each $size, $value in $spacing-values {
+  .m-#{$size} {
+    margin: $value;
+  }
+  .mt-#{$size} {
+    margin-top: $value;
+  }
+  .mr-#{$size} {
+    margin-right: $value;
+  }
+  .mb-#{$size} {
+    margin-bottom: $value;
+  }
+  .ml-#{$size} {
+    margin-left: $value;
+  }
+  .mx-#{$size} {
+    margin-left: $value;
+    margin-right: $value;
+  }
+  .my-#{$size} {
+    margin-top: $value;
+    margin-bottom: $value;
+  }
+  .p-#{$size} {
+    padding: $value;
+  }
+  .pt-#{$size} {
+    padding-top: $value;
+  }
+  .pr-#{$size} {
+    padding-right: $value;
+  }
+  .pb-#{$size} {
+    padding-bottom: $value;
+  }
+  .pl-#{$size} {
+    padding-left: $value;
+  }
+  .px-#{$size} {
+    padding-left: $value;
+    padding-right: $value;
+  }
+  .py-#{$size} {
+    padding-top: $value;
+    padding-bottom: $value;
+  }
+}
+
+@each $breakpoint, $width in $container-max-widths {
+  @media (min-width: $width) {
+    @each $size, $value in $spacing-values {
+      .m-#{$breakpoint}-#{$size} {
+        margin: $value;
+      }
+      .mt-#{$breakpoint}-#{$size} {
+        margin-top: $value;
+      }
+      .mr-#{$breakpoint}-#{$size} {
+        margin-right: $value;
+      }
+      .mb-#{$breakpoint}-#{$size} {
+        margin-bottom: $value;
+      }
+      .ml-#{$breakpoint}-#{$size} {
+        margin-left: $value;
+      }
+      .mx-#{$breakpoint}-#{$size} {
+        margin-left: $value;
+        margin-right: $value;
+      }
+      .my-#{$breakpoint}-#{$size} {
+        margin-top: $value;
+        margin-bottom: $value;
+      }
+      .p-#{$breakpoint}-#{$size} {
+        padding: $value;
+      }
+      .pt-#{$breakpoint}-#{$size} {
+        padding-top: $value;
+      }
+      .pr-#{$breakpoint}-#{$size} {
+        padding-right: $value;
+      }
+      .pb-#{$breakpoint}-#{$size} {
+        padding-bottom: $value;
+      }
+      .pl-#{$breakpoint}-#{$size} {
+        padding-left: $value;
+      }
+      .px-#{$breakpoint}-#{$size} {
+        padding-left: $value;
+        padding-right: $value;
+      }
+      .py-#{$breakpoint}-#{$size} {
+        padding-top: $value;
+        padding-bottom: $value;
+      }
+    }
+  }
+}
+
+@each $direction in $flex-directions {
+  .flex-#{$direction} {
+    flex-direction: #{$direction};
+  }
+}
+
+@each $wrap in $flex-wraps {
+  .flex-#{$wrap} {
+    flex-wrap: #{$wrap};
+  }
+}
+
+@each $size, $value in $flex-gaps {
+  .gap-#{$size} {
+    gap: $value;
+  }
+}
+
+@each $breakpoint, $width in $container-max-widths {
+  @media (min-width: $width) {
+    @each $direction in $flex-directions {
+      .flex-#{$breakpoint}-#{$direction} {
+        flex-direction: #{$direction};
+      }
+    }
+    @each $wrap in $flex-wraps {
+      .flex-#{$breakpoint}-#{$wrap} {
+        flex-wrap: #{$wrap};
+      }
+    }
+    @each $size, $value in $flex-gaps {
+      .gap-#{$breakpoint}-#{$size} {
+        gap: $value;
+      }
+    }
+  }
+}

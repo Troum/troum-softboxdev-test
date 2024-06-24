@@ -1,0 +1,11 @@
+@use "sass:math";
+@import "variables";
+
+@mixin make-container-max-width($breakpoint) {
+  max-width: map-get($container-max-widths, $breakpoint);
+}
+
+@mixin make-col($size) {
+  flex: 0 0 percentage(math.div($size, $grid-columns));
+  max-width: percentage(math.div($size, $grid-columns));
+}
